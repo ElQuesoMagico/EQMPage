@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import scrollTexture from './assets/ScrollTexture.jpg';
 import scrollDeco from './assets/ScrollDeco.png';
 import scrollDeco2 from './assets/ScrollDeco2.png';
-import scrollSoundFile from './assets/ScrollSound.mp3'; // 1. Import your scroll sound file
+import scrollSoundFile from './assets/ScrollSound.mp3';
 
 interface Project {
   title: string;
@@ -15,7 +15,7 @@ const projectsData: Project[] = [
     title: 'APP DESPERTADOR',
     description: [
       'Descripcion Descripcion',
-      'Descripcion Descripcion',
+      'Descripcion Descripcion',  
       'Descripcion Descripcion',
       'Descripcion Descripcion',
     ],
@@ -45,6 +45,7 @@ export default function Body(): React.JSX.Element {
     // Initialize audio object with low volume
     audioRef.current = new Audio(scrollSoundFile);
     audioRef.current.volume = .5;
+
 
     const handleScroll = () => {
       const fullHeight = document.documentElement.scrollHeight - window.innerHeight;

@@ -1,4 +1,3 @@
-import React from 'react';
 import Header from './Header';
 import Body from './Body';
 import bgVideo from './assets/background.mp4'; // Import your video file
