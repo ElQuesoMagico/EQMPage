@@ -12,14 +12,11 @@ interface Project {
 
 const projectsData: Project[] = [
   {
-    title: 'APP DESPERTADOR',
+    title: 'SkillClock',
     description: [
-      'Descripcion Descripcion',
-      'Descripcion Descripcion',  
-      'Descripcion Descripcion',
-      'Descripcion Descripcion',
+      'Una aplicacion de despertador con una tematica especial. Para lograr apagar la alarma cuando suene, tienes que ganar unos "skill check" al estilo del juego Dead by Daylight...',
     ],
-    githubUrl: 'https://github.com',
+    githubUrl: 'https://github.com/ElQuesoMagico/SkillClock',
   },
   {
     title: 'NOMBRE PROYECTO 2',
@@ -37,66 +34,53 @@ export default function Body(): React.JSX.Element {
   const [translateY, setTranslateY] = useState<number>(-100);
   const parchmentRef = useRef<HTMLDivElement>(null);
 
-  // 2. Sound playback refs
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const lastScrollY = useRef<number>(0);
 
   useEffect(() => {
-    // Initialize audio object with low volume
     audioRef.current = new Audio(scrollSoundFile);
-    audioRef.current.volume = .5;
-
+    audioRef.current.volume = 0.5;
 
     const handleScroll = () => {
       const fullHeight = document.documentElement.scrollHeight - window.innerHeight;
       const currentScroll = window.scrollY;
 
-      // Handle parchment translation
       if (fullHeight > 0) {
         const progress = Math.min(Math.max(currentScroll / fullHeight, 0), 1);
         setTranslateY(-100 + progress * 100);
       }
 
-      // 3. Play audio effect when scrolled past threshold (60px)
       if (Math.abs(currentScroll - lastScrollY.current) > 60) {
         if (audioRef.current) {
           audioRef.current.currentTime = 0;
 
-          // 1. Disable pitch preservation so changing speed changes pitch
           audioRef.current.preservesPitch = false;
           (audioRef.current as HTMLAudioElement & { mozPreservesPitch?: boolean }).mozPreservesPitch = false;
           (audioRef.current as HTMLAudioElement & { webkitPreservesPitch?: boolean }).webkitPreservesPitch = false;
 
-          // 2. Randomize playbackRate between 0.85 (lower pitch) and 1.15 (higher pitch)
           const randomPitch = 0.85 + Math.random() * 0.3;
           audioRef.current.playbackRate = randomPitch;
 
-          audioRef.current.play().catch(() => {
-            // Silently handle autoplay restrictions
-          });
+          audioRef.current.play().catch(() => {});
         }
         lastScrollY.current = currentScroll;
       }
     };
 
+    // Simplified and mobile-friendly scroll calculation
     const handleScrollToId = (e: Event) => {
       const customEvent = e as CustomEvent<string>;
       const targetId = customEvent.detail;
       const targetElement = document.getElementById(targetId);
 
-      if (!targetElement || !parchmentRef.current) return;
+      if (!targetElement) return;
 
-      const parchmentHeight = parchmentRef.current.offsetHeight;
-      const fullHeight = document.documentElement.scrollHeight - window.innerHeight;
-
-      const elementTop = targetElement.offsetTop;
-      const targetTranslatePixel = (window.innerHeight / 2) - elementTop - 80;
-      const targetTranslatePercent = (targetTranslatePixel / parchmentHeight) * 100;
-      const requiredProgress = (targetTranslatePercent + 100) / 100;
-      const targetScrollY = requiredProgress * fullHeight;
+      const headerOffset = 80;
+      const elementPosition = targetElement.getBoundingClientRect().top + window.scrollY;
+      const offsetPosition = elementPosition - headerOffset;
 
       window.scrollTo({
-        top: Math.max(0, Math.min(targetScrollY, fullHeight)),
+        top: offsetPosition,
         behavior: 'smooth',
       });
     };
@@ -169,7 +153,7 @@ export default function Body(): React.JSX.Element {
           Herramientas, Productividad & Flujo de Trabajo
         </p>
         <p style={{ fontSize: '1.1rem', lineHeight: '1.5', marginBottom: '3rem' }}>
-          Git / GitHub • Obsidian • Notion • Slack
+          Git / GitHub • Notion • Slack
         </p>
 
         <img src={scrollDeco2} alt="decoration" style={{ margin: '0 auto 3rem', display: 'block', opacity: 0.7, width: '80%' }} />
@@ -244,11 +228,9 @@ export default function Body(): React.JSX.Element {
         </h2>
 
         <p style={{ fontSize: '1.1rem', lineHeight: '1.5', marginBottom: '5rem' }}>
-          ¡Hola! Soy Ariel Soto, Técnico en Informática apasionado por construir software eficiente, sistemas multijugador y soluciones digitales que resuelven problemas del mundo real.
+          ¡Hola! Soy Ariel C. Soto, Técnico en Informática apasionado por construir software, sistemas multijugador y soluciones digitales que resuelven problemas del mundo real de maneras practicas y tambien divertidas.
 
-          Mi trayectoria combina la lógica del desarrollo de software con la experiencia práctica de liderar despliegues de tecnología en terreno. He liderado proyectos críticos como la implementación de sistemas POS/ERP y la automatización de flujos de datos mediante APIs, así como el desarrollo de arquitecturas cliente-servidor en entornos interactivos como Unity y Roblox Studio.
-
-          Me destaco por mi adaptabilidad, mi capacidad de organización y un enfoque proactivo para convertir requisitos complejos en código limpio, funcional y escalable.
+          Mi trayectoria combina la lógica del desarrollo de software con la experiencia práctica de liderar despliegues de tecnología en terreno. He liderado proyectos como la implementación de sistemas POS/ERP y la automatización de flujos de datos mediante APIs, así como el desarrollo de arquitecturas cliente-servidor en entornos interactivos como Unity.
         </p>
 
         <img src={scrollDeco} alt="decoration" style={{ margin: '0 auto 2rem', display: 'block', opacity: 0.7, rotate: '180deg' }} />

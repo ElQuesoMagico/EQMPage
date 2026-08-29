@@ -122,7 +122,6 @@ button {
   filter: sepia(200%) hue-rotate(345deg) saturate(230%) brightness(60%);
 }
 
-
 code,
 .counter {
   font-family: var(--mono);
@@ -148,7 +147,7 @@ header, .header-container {
   left: 0;
   right: 0;
   height: 80px;
-  z-index: 100 !important; /* Higher than the 40 used on Body */
+  z-index: 100 !important; 
 }
 
 .collapse {
@@ -162,17 +161,15 @@ header, .header-container {
   overflow-x: hidden;
   color: var(--text);
 
-  /* Texture Settings */
   background-color: #f4e8c1;
   background-repeat: repeat; 
   background-size: auto;     
 }
 
 ::-webkit-scrollbar {
-  display: none; /* Hides WebKit scrollbar track while maintaining scrollability */
+  display: none; 
 }
 
-/* Container layout setup */
 .parchment-scroll {
   position: fixed;
   isolation: isolate;
@@ -185,7 +182,11 @@ header, .header-container {
   background-image: var(--bg-texture);
   background-repeat: repeat;
   background-size: 100% auto;
-  opacity: 0.5; /* Texture opacity */
+  opacity: 0.5; 
   z-index: -1;
   border-radius: inherit;
+}
+
+.scrollarrow {
+  width: 2rem;
 }
