@@ -170,7 +170,8 @@ export default function Header(): React.JSX.Element {
                             Al final del día siempre llego a la misma conclusión... Te Amo cada día más, cada vez me cautivas más y más y más.  
                             Te Amo con todo lo que tengo.
                             
-                            Tengo tantas cosas que quiero decirte pero no tengo mas palabras, Te amo`;;
+                            Tengo tantas cosas que quiero decirte e intento hacer lo mejor que puedo con las palabras, aunque no sea mi fuerte ojala pueda demostrarte un poquito lo que siento por ti
+                            TE AMOOOOOOOOOOOOOOOOOOOOOOOOOO`;;
             window.dispatchEvent(
                 new CustomEvent('change-bg', {
                     detail: {
