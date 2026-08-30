@@ -138,8 +138,10 @@ export default function Header(): React.JSX.Element {
             const url = commandInput.substring(4);
             setTopImage(url);
             playSoundEffect('success');
-        } else if (cmd === 'audio') {
+        } else if (cmd === 'pista1' || cmd === 'Pista 1' || cmd === 'pista 1' || cmd === 'Pista 1') {
+            const text = 'Muy bien! has llegado a este punto, ahora te falta seguir encontrando dos pistas para llegar al objetivo final. Tu siguiente pista es: "Dorada coraza protege el mensaje, tu siguiente pista rodeada de diverso amor se encuentra. Rosa, verde y tinta es el entorno que rodea el papel que resuelve tus dudas..."';
             playSoundEffect('success');
+            setCenterMessage(text);
         } else if (cmd === 'clear' || cmd === 'reset') {
             window.dispatchEvent(
                 new CustomEvent('change-bg', {
@@ -153,8 +155,22 @@ export default function Header(): React.JSX.Element {
             setTopImage(null);
             setConsoleOutput('✓ Configuración reiniciada.');
             playSoundEffect('success');
-        } else if ((cmd === 'junio24')){
-            const message = 'Hola  mi amor, quiero que sepas que cuando veas esto que no importa el momento, situacion, hora, dia, este o no despierto. Siempre estas en mi mento, siempre estoy pensando en cuanto te amo /n';
+        } else if ((cmd === 'junio24' || cmd === 'junio 24' || cmd === 'Junio24' || cmd === 'Junio 24')){
+            const message =`¡¡¡Felicidades!!!, Ojalá no haya sido muy tedioso llegar hasta aqui, pero me costó armar todo esto, así que tampoco podía dejarlo taaaaaaaan fácil (Y eso que se me habían ocurrido algo con varios pasos mas y mas complejo , pero era mucho XD). 
+
+                            Bueno, planear y diseñar esto ha sido usar mucha mente, ahora voy a dejar que mi corazón siga jsjsjsjs. 
+                            Muchas veces no logro entender bien los sentimientos, sobre todo los míos y soy una persona bien insegura también. 
+                            Pero, aunque no lo entienda tanto a veces, ni mis sentimientos ni la situación ni como es algo tan mágico. Una de las pocas cosas que estoy completamente seguro es que te amo. 
+                            Amo todo de ti, no puedo dejar de perderme en tus ojos cuando los veo. 
+                            Cuando pasa el día no puedo dejar de pensar en ti en cada tic del reloj, imaginar estar en tus brazos y sentir el calor de tus labios con los míos mientras cierro los ojos. 
+                            Y cuando estoy contigo no puedo dejar de disfrutar el momento, desde los momentos que hacemos algo juntos y nos reímos, hasta estar los dos juntos abrazados en silencio, cada momento contigo es un momento digno de querer sentir por toda la eternidad y no puedo evitar querer sentir cada segundo que estoy contigo. 
+                            Waaaa es imposible poder realmente poder poner todo lo que siento en palabras, pero al menos quiero cada vez que lo intento demostrar poco a poco un pedacito de mi corazón y demostrarte como estas en cada rincón de él. 
+                            Lo que quiero decir es que, dentro de lo malo, lo bueno en todo Te amo. 
+                            Te Amo Matilda, no sé si lo logro expresar completamente, de verdad te amo, te amo y te amo mucho y muchas veces las dudas que tengo son que quiero que lo sepas y quiero verte sonreír. 
+                            Al final del día siempre llego a la misma conclusión... Te Amo cada día más, cada vez me cautivas más y más y más.  
+                            Te Amo con todo lo que tengo.
+                            
+                            Tengo tantas cosas que quiero decirte pero no tengo mas palabras, Te amo`;;
             window.dispatchEvent(
                 new CustomEvent('change-bg', {
                     detail: {
@@ -292,7 +308,7 @@ export default function Header(): React.JSX.Element {
             {/* Center Message Popup */}
             {centerMessage && (
                 <div className="fixed inset-0 z-40 flex items-center justify-center pointer-events-none">
-                    <div className="pointer-events-auto bg-blue-50 text-white border border-amber-500/50 px-6 py-4 rounded-2xl shadow-2xl text-center max-w-md">
+                    <div className="pointer-events-auto bg-blue-50 text-white border border-amber-500/50 px-6 py-4 rounded-2xl shadow-2xl text-center">
                         <p className="text-lg font-bold mb-2"></p>
                         <p className="text-sm text-white">{centerMessage}</p>
                         <button
