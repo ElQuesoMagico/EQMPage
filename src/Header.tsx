@@ -6,6 +6,8 @@ import secretvfx from './assets/secretsfx.mp3';
 import heartgif from './assets/Heart.gif';
 import haruu from './assets/haruu.jpeg';
 import yellowbg from './assets/yellowbg.jpg';
+import amarillotxt from './assets/amarillo.txt?raw';
+import juniotxt from './assets/junio.txt?raw';
 
 const KONAMI_CODE = [
     'ArrowUp', 'ArrowUp',
@@ -143,7 +145,7 @@ export default function Header(): React.JSX.Element {
             try {
                 const response = await fetch(`/${filename}`);
                 if (!response.ok) throw new Error('Archivo no encontrado');
-                const fileText = await response.text();-a
+                const fileText = await response.text();
                 setCenterMessage(fileText);
                 playSoundEffect('success');
                 setConsoleOutput(`✓ Archivo ${filename} cargado.`);
@@ -165,6 +167,7 @@ export default function Header(): React.JSX.Element {
             setConsoleOutput('✓ Configuración reiniciada.');
             playSoundEffect('success');
         } else if (['oro', 'amarillo oro', 'gold', 'amarillo gold'].includes(cmd)) {
+            setCenterMessage(amarillotxt);
             window.dispatchEvent(
                 new CustomEvent('change-bg', {
                     detail: {
@@ -175,13 +178,7 @@ export default function Header(): React.JSX.Element {
             );
             playSoundEffect('success');
         } else if (['junio24', 'junio 24'].includes(cmd)) {
-            // También puedes definir strings multilínea directamente con backticks (`)
-            const message = `Bien hechooooooooooooooooooo!!!, hacer esto igual me tomo un poquito de tiempo, pero realmente es poco con todo el tiempo que te dedicaría.
-
-Muchas veces no logro entender como tal los sentimientos, sobre todo los míos son difíciles de entender para mí y soy una persona con inseguridades.
-
-Pero, aunque no lo entienda tanto, ni mis sentimientos ni como esta situación es algo casi mágico. Una de las cosas que estoy completamente seguro con toda mi alma es que te amo.`;
-
+            setCenterMessage(juniotxt);
             window.dispatchEvent(
                 new CustomEvent('change-bg', {
                     detail: {
@@ -192,7 +189,6 @@ Pero, aunque no lo entienda tanto, ni mis sentimientos ni como esta situación e
             );
             playSoundEffect('success');
             setTopImage(haruu);
-            setCenterMessage(message);
         } else {
             setConsoleOutput('✗ Comando no reconocido.');
             playSoundEffect('error');
